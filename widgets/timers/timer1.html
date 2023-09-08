@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Retro Block Countdown Timer</title>
+    <style>
+        body {
+            background-color: #1a1a1a; /* Dark Gray */
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+            color: #fff; /* White */
+            padding: 20px;
+        }
+
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 0px;
+        }
+
+        .retro-timer-container {
+            display: inline-block;
+        }
+
+        .retro-timer {
+            font-size: 2rem;
+            font-weight: bold;
+            background-color: transparent; /* Dark Gray */
+            padding: 10px;
+            padding-bottom: 0px;
+    padding-top: 0px;
+        }
+
+        .retro-timer span {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            background-color: #333; /* Pale Goldenrod */
+            margin: 5px;
+            border-radius: 5px;
+        }
+
+        .label {
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="retro-timer-container">
+        <div class="retro-timer">
+            <span id="days">32</span>
+        </div>
+        <span class="label">Days</span>
+    </div>
+    <div class="retro-timer-container">
+        <div class="retro-timer">
+            <span id="hours">12</span>
+        </div>
+        <span class="label">Hours</span>
+    </div>
+
+    <script>
+        // Set the date we're counting down to
+        var countDownDate = new Date("October 9, 2023 00:00:00").getTime();
+
+        // Update the countdown every 1 second
+        var x = setInterval(function() {
+            // Get the current date and time
+            var now = new Date().getTime();
+
+            // Calculate the time remaining
+            var distance = countDownDate - now;
+
+            // Calculate days and hours
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+
+            // Update the countdown timer display
+            document.getElementById("days").innerText = days.toString().padStart(2, '0');
+            document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
+
+            // If the countdown is over, display a message
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("days").innerText = "00";
+                document.getElementById("hours").innerText = "00";
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
