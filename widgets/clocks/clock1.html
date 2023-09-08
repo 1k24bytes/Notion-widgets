@@ -1,267 +1,206 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-    <style>
-      :root{
-    --color: #fff;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <style>
+     html {
+  background: #282828;
+  text-align: center;
+  font-size: 10px;
 }
 
-*{
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-body{
-    background-color: #000000;
-}
-
-.container{
-    background-color: black;
-    position: relative;
-    z-index: 0;
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.clock{
-    background: transparent;
-    height: 300px;
-    width: 300px;
-    border: 7px solid var(--color);
-    border-radius: 50%;
-    position: absolute;
-    z-index: 1;
-}
-.hour .upper{
-    background: var(--color);
-    height: 80px;
-    width: 10px;
-    border-top-left-radius: 100px;
-    border-top-right-radius: 100px;
-    position: relative;
-    bottom: -3px;
-}
-.hour .middle{
-    background: transparent;
-    height: 30px;
-    width: 30px;
-    border: 4px solid var(--color);
-    border-radius: 100px;
-}
-.hour .down{
-    background: transparent;
-    height: 80px;
-}
-.hour{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: absolute;
-    z-index: 2;
-}
-.minute .upper{
-    background: var(--color);
-    height: 95px;
-    width: 7px;
-    border-top-left-radius: 100px;
-    border-top-right-radius: 100px;
-    position: relative;
-    bottom: -3px;
-}
-.minute .middle{
-    background: transparent;
-    height: 30px;
-    width: 30px;
-    border: 4px solid var(--color);
-    border-radius: 100px;
-}
-.minute .down{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: transparent;
-    height: 95px;
-}
-.minute{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: absolute;
-    z-index: 3;
-}
-.second .upper{
-    background: var(--color);
-    height: 110px;
-    width: 2px;
-    border-top-left-radius: 100px;
-    border-top-right-radius: 100px;
-    position: relative;
-    bottom: -3px;
-}
-.second .middle{
-    background: transparent;
-    height: 30px;
-    width: 30px;
-    border: 4px solid var(--color);
-    border-radius: 100px;
-}
-.second .down{
-    background: transparent;
-    height: 110px;
-}
-.second{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: absolute;
-    z-index: 4;
+body {
+  margin: 0;
+  font-size: 2rem;
+  display: flex;
+  flex: 1;
+  min-height: 100vh;
+  align-items: center;
+  display: flex;
+      justify-content: center;
+      align-items: center;
+      
 }
 
-.hour .upper, .minute .upper, .second .upper{
-    animation: colorChange 20s ease-in-out infinite;
+.clock {
+  width: 20rem;
+  height: 20rem;
+  position: relative;
+  padding: 10px;
+  border: 2px solid #ffffff; 
+  border-radius: 50%;
+  margin: 0px auto;
+
 }
-.clock, .hour .middle, .minute .middle, .second .middle{
-    animation: borderColorChange 20s ease-in-out infinite;
+.outer-clock-face {
+  position: relative;
+  background: #282828;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
 }
 
+.outer-clock-face::after {
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  transform: rotate(90deg)
+}
 
-@keyframes colorChange {
-    0%{
-        background: #5ac8fa;
-    }
-    10%{
-        background: #3345eb;
-    }
-    20%{
-        background: #975afa;
-    }   
-    30%{
-        background: #da5afa;
-    }
-    40%{
-        background: #d94cba;
-    }
-    50%{
-        background: #ff2d55;
-    }
-    60%{
-        background: #ff3b30;
-    }
-    70%{
-        background: #ff9500;
-    }
-    80%{
-        background: #ffcc00;
-    }
-    90%{
-        background: #4cd964;
-    }
-    100%{
-        background: #5ac8fa;
-    }
+.outer-clock-face::after,
+.outer-clock-face::before,
+.outer-clock-face .marking{
+  content: '';
+  position: absolute;
+  width: 3px;
+  height: 100%;
+  background: #ffffff;
+  z-index: 0;
+  left: 49%;
 }
-@keyframes borderColorChange {
-    0%{
-        border: 4px solid #5ac8fa;
-    }
-    10%{
-        border: 4px solid #3345eb;
-    }
-    20%{
-        border: 4px solid #975afa;
-    }   
-    30%{
-        border: 4px solid #da5afa;
-    }
-    40%{
-        border: 4px solid #d94cba;
-    }
-    50%{
-        border: 4px solid #ff2d55;
-    }
-    60%{
-        border: 4px solid #ff3b30;
-    }
-    70%{
-        border: 4px solid #ff9500;
-    }
-    80%{
-        border: 4px solid #ffcc00;
-    }
-    90%{
-        border: 4px solid #4cd964;
-    }
-    100%{
-        border: 4px solid #5ac8fa;
-    }
+.outer-clock-face .marking {
+  background: #bdbdcb;
+  width: 3px;
 }
-</style>
-    <title>Start</title>
+
+.outer-clock-face .marking.marking-one {
+  -webkit-transform: rotate(30deg);
+  -moz-transform: rotate(30deg);
+  transform: rotate(30deg)
+}
+
+.outer-clock-face .marking.marking-two {
+  -webkit-transform: rotate(60deg);
+  -moz-transform: rotate(60deg);
+  transform: rotate(60deg)
+}
+
+.outer-clock-face .marking.marking-three {
+  -webkit-transform: rotate(120deg);
+  -moz-transform: rotate(120deg);
+  transform: rotate(120deg)
+}
+
+.outer-clock-face .marking.marking-four {
+  -webkit-transform: rotate(150deg);
+  -moz-transform: rotate(150deg);
+  transform: rotate(150deg)
+}
+.inner-clock-face {
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  width: 80%;
+  height: 80%;
+  background: #282828;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  border-radius: 100%;
+  z-index: 1;
+}
+
+.inner-clock-face::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 16px;
+  height: 16px;
+  border-radius: 18px;
+  margin-left: -9px;
+  margin-top: -6px;
+  background: #d7e274;
+  z-index: 11;
+}
+.hand {
+  width: 50%;
+  right: 50%;
+  height: 4px;
+  background: #d8ebff;
+  position: absolute;
+  top: 50%;
+  border-radius: 6px;
+  transform-origin: 100%;
+  transform: rotate(90deg);
+  transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.hand.hour-hand {
+  width: 25%;
+  z-index: 3;
+}
+
+.hand.min-hand {
+  height: 2px;
+  z-index: 10;
+  width: 33%;
+}
+
+#date-display {
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.clock-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+  </style>
+  <title>Analog Clock with Date</title>
 </head>
 <body>
-  <div class="container">
-        <div class="clock"></div>
-        <div class="hour">
-            <div class="upper"></div>
-            <div class="middle"></div>
-            <div class="down"></div>
-        </div>
-        <div class="minute">
-            <div class="upper"></div>
-            <div class="middle"></div>
-            <div class="down"></div>
-        </div>
-        <div class="second">
-            <div class="upper"></div>
-            <div class="middle"></div>
-            <div class="down"></div>
-        </div>
-    </div>
-    <script>
-      var hour = document.querySelector('.hour');
-var minute = document.querySelector('.minute');
-var second = document.querySelector('.second');
+  <div class="clock-container">
+    <div class="clock">
+    <div class="outer-clock-face">
+      <div class="marking marking-one"></div>
+      <div class="marking marking-two"></div>
+      <div class="marking marking-three"></div>
+      <div class="marking marking-four"></div>
+      <div class="inner-clock-face"></div>
+      <div class="hand hour-hand"></div>
+      <div class="hand min-hand"></div>
+    </div></div>
+    <div id="date-display"></div>
+  </div>
+  <script>
+    const minsHand = document.querySelector('.min-hand');
+    const hourHand = document.querySelector('.hour-hand');
 
-var time;
-var degree;
-var dPlus;
-function theTime() {
-    time = new Date();
+    function setDate() {
+      const now = new Date();
 
-    //For Hours
-    degree = time.getHours();
-    degree = degree*30;
-    dPlus = time.getMinutes();
-    dPlus = dPlus/2;
-    degree = degree + dPlus;
-    hour.style.transform = 'rotate('+degree+'deg)';
+      const mins = now.getMinutes();
+      const minsDegrees = ((mins / 60) * 360) + ((now.getSeconds() / 60) * 6) + 90;
+      minsHand.style.transform = `rotate(${minsDegrees}deg)`;
 
+      const hour = now.getHours();
+      const hourDegrees = ((hour / 12) * 360) + ((mins / 60) * 30) + 90;
+      hourHand.style.transform = `rotate(${hourDegrees}deg)`;
+    }
 
-    //For Minutes
-    degree = time.getMinutes();
-    degree = degree*6;
-    dPlus = time.getSeconds();
-    dPlus = dPlus/10;
-    degree = degree + dPlus;
-    minute.style.transform = 'rotate('+degree+'deg)';
+    setInterval(setDate, 1000);
 
+    setDate(); // Call it once to initialize the clock
+  </script>
+  <script>
+   
+    function displayDate() {
+      const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+      const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
-    //For Seconds
-    degree = time.getSeconds();
-    degree = degree*6;
-    dPlus = time.getMilliseconds();
-    dPlus = dPlus/167;
-    degree = degree + dPlus;
-    second.style.transform = 'rotate('+degree+'deg)';
+      const now = new Date();
+      const dayOfWeek = daysOfWeek[now.getDay()];
+      const dayOfMonth = now.getDate();
+      const month = months[now.getMonth()];
 
-}
-var temp = setInterval(theTime, 10);
-         </script>
+      const dateDisplay = document.getElementById('date-display');
+      dateDisplay.textContent = `${dayOfWeek}, ${month} ${dayOfMonth}`;
+    }
+
+    // Call the function to display the date when the page loads
+    displayDate();
+  </script>
 </body>
 </html>
